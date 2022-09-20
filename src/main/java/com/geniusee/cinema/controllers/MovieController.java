@@ -1,19 +1,18 @@
 package com.geniusee.cinema.controllers;
 
-import com.geniusee.cinema.models.movies.MovieRequest;
 import com.geniusee.cinema.models.movies.Movie;
+import com.geniusee.cinema.models.movies.MovieRequest;
 import com.geniusee.cinema.services.movies.IMovieService;
+import com.geniusee.cinema.utils.ParamsExtractor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,17 +50,15 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    ResponseEntity<List<Movie>> getMoviesByCriteria(@RequestParam(required = false) String title,
-                                                    @RequestParam(required = false) String description,
-                                                    @RequestParam(required = false) Integer duration,
+    ResponseEntity<List<Movie>> getMoviesByCriteria(@RequestParam Map<String, String> queryMap,
                                                     @RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "2") int size) {
-        Pageable paging = PageRequest.of(page, size);
-        Map<String, Object> queryParams = new HashMap<>();
-        queryParams.put("title", title);
-        queryParams.put("description", description);
-        queryParams.put("duration", duration);
-        return new ResponseEntity<>(movieService.getAllByCriteria(queryParams, paging), HttpStatus.OK);
+        return new ResponseEntity<>(
+                movieService.getAllByCriteria(
+                        ParamsExtractor.extractValidParamsForType(queryMap, Movie.class),
+                        PageRequest.of(page, size)),
+                HttpStatus.OK);
     }
+
 
 }

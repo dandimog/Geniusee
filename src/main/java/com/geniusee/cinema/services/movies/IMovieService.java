@@ -12,5 +12,5 @@ public interface IMovieService {
     Movie getMovieByID(long id);
     Movie updateMovie(long id, MovieRequest movie);
     void deleteMovieByID(long id);
-    List<Movie> getAllByCriteria(Map<String, Object> queryParams, Pageable paging);
+    List<Movie> getAllByCriteria(Map<String, String> queryParams, Pageable paging);
 }
