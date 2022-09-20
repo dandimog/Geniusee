@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MovieControllerTest {
 
     // TODO: Error cases with ApiError Response
-    // TODO: Add env variables with DB credentials
 
     @Autowired
     private MockMvc mockMvc;
@@ -61,10 +60,10 @@ class MovieControllerTest {
                         .content(mapper.writeValueAsString(request)))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id", is(movie.getId())))
+                .andExpect(jsonPath("$.id", is((int) movie.getId())))
                 .andExpect(jsonPath("$.title", is(movie.getTitle())))
                 .andExpect(jsonPath("$.description", is(movie.getDescription())))
-                .andExpect(jsonPath("$.durationInMin", is(movie.getDuration())));
+                .andExpect(jsonPath("$.duration", is(movie.getDuration())));
     }
 
     @Test
@@ -85,16 +84,16 @@ class MovieControllerTest {
                 .perform(get("/cinema/movies/{id}", movieId))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.id", is(movie.getId())))
+                .andExpect(jsonPath("$.id", is((int) movie.getId())))
                 .andExpect(jsonPath("$.title", is(movie.getTitle())))
                 .andExpect(jsonPath("$.description", is(movie.getDescription())))
-                .andExpect(jsonPath("$.durationInMin", is(movie.getDuration())));
+                .andExpect(jsonPath("$.duration", is(movie.getDuration())));
     }
 
     @Test
     public void whenGetMovieById_thenReturnUpdatedMovieObject() throws Exception {
 
-        long movieId = 1L;
+        long movieId = 1;
 
         Movie savedMovie = Movie.builder()
                 .id(movieId)
@@ -124,10 +123,10 @@ class MovieControllerTest {
                 .content(mapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.id", is(updatedMovie.getId())))
+                .andExpect(jsonPath("$.id", is((int) updatedMovie.getId())))
                 .andExpect(jsonPath("$.title", is(updatedMovie.getTitle())))
                 .andExpect(jsonPath("$.description", is(updatedMovie.getDescription())))
-                .andExpect(jsonPath("$.durationInMin", is(updatedMovie.getDuration())));
+                .andExpect(jsonPath("$.duration", is(updatedMovie.getDuration())));
     }
 
     @Test

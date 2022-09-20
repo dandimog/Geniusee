@@ -13,7 +13,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 public class Movie {
-
     public Movie(MovieRequest request) {
         this.title = request.getTitle();
         this.description = request.getDescription();
