@@ -67,7 +67,9 @@ public class MovieService implements IMovieService {
             return repository.findAll(paging).getContent();
         } else {
             Specification<Movie> spec = null;
-            // TODO: bug
+            // TODO: rewrite and unify this piece so that
+            //  it can work properly
+            //  without ambiguous 'if' statements and wrong behaviour without 'title' query param
             System.out.println(queryParams.get("title"));
             if (queryParams.get("title") != null) {
                 spec = (MovieSpecs.titleIs((String) queryParams.get("title")));

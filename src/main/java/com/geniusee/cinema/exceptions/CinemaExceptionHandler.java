@@ -42,11 +42,9 @@ public class CinemaExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
-    // TODO: clean
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleDefault(Exception ex) {
-        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR,
-                "Unexpected Internal Server Error occurred." + ex.getMessage());
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Internal Server Error occurred.");
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 }

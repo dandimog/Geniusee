@@ -25,8 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MovieController.class)
 class MovieControllerTest {
 
-    // TODO: Error cases with ApiError Response
-
     @Autowired
     private MockMvc mockMvc;
 

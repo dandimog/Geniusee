@@ -58,7 +58,6 @@ public class MovieController {
                                                     @RequestParam(defaultValue = "2") int size) {
         Pageable paging = PageRequest.of(page, size);
         Map<String, Object> queryParams = new HashMap<>();
-        // TODO: they can be empty
         queryParams.put("title", title);
         queryParams.put("description", description);
         queryParams.put("duration", duration);
