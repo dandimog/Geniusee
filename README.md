@@ -16,8 +16,8 @@
 2. #### Order Controller
 - [x] Basic CRUD operations for `OrderController`
 - [ ] Find All by any parameter of an entity using `javax.persistence.criteria` and
-  `springframework.data.jpa.domain.Specification` with pagination
-- [ ] Unit tests for `OrderController` and `OrderService`
+  `springframework.data.jpa.domain.Specification` with pagination *(should implement the same way as in Movie Controller)*
+- [ ] Unit tests for `OrderController` and `OrderService` *(should implement the same way as in Movie Controller)*
 - [ ] Integration tests for `OrderRepository` 
 3. #### Other requirements
 - [x] DB creating should be implemented with Liquibase
