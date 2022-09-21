@@ -50,12 +50,12 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    ResponseEntity<List<Movie>> getMoviesByCriteria(@RequestParam Map<String, String> queryMap,
+    ResponseEntity<List<Movie>> getMoviesByCriteria(@RequestParam Map<String, String> queryParams,
                                                     @RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "2") int size) {
         return new ResponseEntity<>(
                 movieService.getAllByCriteria(
-                        ParamsExtractor.extractValidParamsForType(queryMap, Movie.class),
+                        ParamsExtractor.extractValidParamsForType(queryParams, Movie.class),
                         PageRequest.of(page, size)),
                 HttpStatus.OK);
     }
