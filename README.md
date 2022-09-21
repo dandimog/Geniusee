@@ -19,6 +19,6 @@
   `springframework.data.jpa.domain.Specification` with pagination
 - [ ] Unit tests for `OrderController` and `OrderService`
 - [ ] Integration tests for `OrderRepository` 
-3. Other requirements
+3. #### Other requirements
 - [x] DB creating should be implemented with Liquibase
 - [x] Host the code on GitHub and provide instructions for running it in readme file
